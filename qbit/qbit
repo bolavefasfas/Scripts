@@ -1,0 +1,17 @@
+#!/bin/bash
+while getopts ":p:" opt; do
+  case "$opt" in
+    p) PORT=$OPTARG ;;
+  esac
+done
+echo "Check http://ip:$PORT"
+
+if [ -z "$PORT" ]
+        then
+                echo "USING DEFAULT PORT 8080"
+                qbittorrent-nox --profile=/ --webui-port=8080
+
+        else
+                echo "Check http://ip:$PORT"
+                qbittorrent-nox --profile=/ --webui-port="$PORT"
+fi
