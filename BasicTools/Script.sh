@@ -18,3 +18,5 @@ sudo dpkg -i cloudflared.deb
 else
     rclone version
 fi
+docker ps
+docker images
