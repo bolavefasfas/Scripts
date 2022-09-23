@@ -9,15 +9,20 @@ sudo apt install docker-compose -y
 echo "Installing Rclone"
 sudo -v ; curl https://rclone.org/install.sh | sudo bash
 
-read -p "Do you want to proceed? (yes/no) " yn
+while true; do
+
+read -p "Do you want to proceed? (y/n) " yn
 
 case $yn in 
-	yes ) echo "Installing Cloudflare" && curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb;;
-	no ) echo exiting...;
+	[yY] ) echo "Installing Cloudflare" && curl -L --output cloudflared.deb https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb && sudo dpkg -i cloudflared.deb;
+		break;;
+	[nN] ) echo exiting...;
 		exit;;
-	* ) echo invalid response;
-		exit 1;;
+	* ) echo invalid response;;
 esac
+
+done
+
 
 docker ps
 docker images
